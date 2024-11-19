@@ -1,11 +1,16 @@
-from discord.ext import commands
 import discord
 import os
 
-path = os.getcwd()
-parent = os.chdir('..')
+from dotenv import load_dotenv,dotenv_values
+from discord.ext import commands
 
-with open(f"{parent}/token.txt") as file:
-    token = file.read()
-
+load_dotenv(".env")
+TOKEN: str = os.getenv("TOKEN")
 bot = commands.Bot(command_prefix = "!",intents=discord.Intents.all())
+
+@bot.event
+async def on_ready():
+    print("on")
+
+
+bot.run(TOKEN)
