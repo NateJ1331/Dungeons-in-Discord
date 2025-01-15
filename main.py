@@ -17,7 +17,11 @@ async def on_message(message):
     await bot.process_commands(message)    
 
 @bot.command()
-async def test(ctx, arg):
-    await ctx.send(arg)
+async def test(ctx):
+    view = discord.ui.View()
+    button = discord.ui.Button(label = "Click Me")
+    view.add_item(button)
+
+    await ctx.send(view=view)
 
 bot.run(TOKEN)
